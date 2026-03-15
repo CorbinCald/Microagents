@@ -1,0 +1,33 @@
+# OpenRouter API
+api:
+  base_url: "https://openrouter.ai/api/v1"
+  key_env: "OPENROUTER_API_KEY"       # env var name (key is NOT stored in this file)
+
+# Orchestrator model (generates skeletons + tool calls)
+orchestrator:
+  model: "google/gemini-3.1-pro-preview"
+  temperature: 1
+  max_tokens: 32000
+
+# Microagent model (implements individual tasks)
+microagent:
+  model: "inception/mercury-2"
+  temperature: 0.1
+  max_tokens: 32000
+
+# Summary model (one-sentence progress updates)
+summary:
+  model: "inception/mercury-2"
+  temperature: 0.0
+  max_tokens: 250
+
+# Retry / concurrency
+retry:
+  max_retries: 3
+  base_delay: 1.0                     # seconds, doubles each retry
+  temp_increment: 0.10                # increase temperature by this much per retry
+
+# Output
+output:
+  dir: "output"                       # default output directory
+  log_dir: "logs"                     # failure logs directory
